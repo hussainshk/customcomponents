@@ -1,0 +1,33 @@
+<ng-template #transcludedHeader>
+    <ng-content></ng-content>
+  </ng-template>
+  
+  <div class="card mb-4">
+    <ng-container *ngIf="showExpandCollapse">
+      <div class="card-header" (click)="headerClick()">
+        <div class="d-flex align-items-center toggle-collapse">
+          <i class="material-icons md-36 collapse-icon" [class.expanded]="isOpen">keyboard_arrow_up</i>
+  
+          <ng-container *ngTemplateOutlet="transcludedHeader"></ng-container>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!showExpandCollapse">
+      <div class="card-header d-flex align-items-center">
+        <ng-container *ngTemplateOutlet="transcludedHeader"></ng-container>
+      </div>
+    </ng-container>
+    <div class="card-body collapse" [class.show]="isOpen" [ngClass]="addBodyClass">
+      <ng-container *ngIf="!showSpinner">
+        <ng-content select="cl-card-content"></ng-content>
+      </ng-container>
+      <ng-container *ngIf="showSpinner">
+        <div style="height: 1em; margin: 0 auto; font-size: 20px ">
+          Loading....
+        </div>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="!showSpinner">
+      <ng-content select="cl-card-footer"></ng-content>
+    </ng-container>
+  </div>

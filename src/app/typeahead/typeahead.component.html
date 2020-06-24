@@ -1,0 +1,7 @@
+<input [value]="query" class="form-control mb-0 col-sm-12" ngxTypeahead [taUrl]="url" [taApi]="api"
+[taItemTpl]="itemTpl" [taParams]="params" [taList]="itemList" [taQueryParam]="qParam"
+[taAllowEmpty]="allowEmpty" (taSelected)="handleHttpResultSelected($event)" (keyup)="SearchWith($event.target.value)"
+[ngClass]="Error|| GoogleLogo" [taDisplayOnFocus]="DisplayOnFocus" [attr.maxlength]= "MaxLength" />
+<div *ngIf="!ShowLabel"  class="input-group-prepend reorder-1 mt--15">
+<span class="input-group-text"><i class=" material-icons md-18">search</i></span>
+</div>

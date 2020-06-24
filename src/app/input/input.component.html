@@ -1,0 +1,39 @@
+<input
+  [ngClass]="addClass"
+  [class.form-control]="!(!enabled && type === 'checkbox')"
+  [class.invisible]="!visible"
+  [(ngModel)]="value"
+  (blur)="onBlur()"
+  (focus)="OnFocus($event)"
+  (mousedown)="onMouseDown()"
+  (change)="change()"
+  #inputRef
+  (keypress)="OnKeyPress($event)"
+  (keyup)="OnKeyUp($event)"
+  (paste)="paste($event)"
+  [attr.type]="type"
+  [attr.checked]="IsChecked() ? 'checked' : null"
+  [disabled]="!enabled"
+  [attr.readonly]="isReadOnly"
+  [attr.name]="name"
+  [placeholder]="placeholderText"
+  [autocomplete]="autocomplete ? '' : 'off'"
+  [entTooltip]="type !== 'checkbox' ? tooltipText : null"
+  (input)="upperCaseValue()"
+  [matAutocomplete]="autoCompletePanel"
+  [attr.matInput]="isMatInput"
+  [matAutocompleteDisabled]="!isAutoComplete"
+/>
+
+<span
+  *ngIf="type === 'checkbox'"
+  class="checkmark"
+  [class.invisible]="!visible"
+  [class.checkmark-error]="invalid"
+  [entTooltip]="tooltipText"
+></span>
+<span
+  *ngIf="type === 'radio'"
+  class="radio"
+  [class.invisible]="!visible"
+></span>

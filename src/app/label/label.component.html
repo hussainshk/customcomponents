@@ -1,0 +1,28 @@
+<label [class.has-error]="invalid" [class.checkbox-label]="isCheckbox" [class.yes-no-btn-label]="YesNoButtonInstance"
+  [ngClass]="addClass" (click)="OnClick($event)" [class.disabled]="isDisabled && !isCheckbox">
+
+  <ng-container *ngIf="!isCheckbox && !YesNoButtonInstance">
+    <span class="label">
+      {{ text }}
+      <span *ngIf="childRequiredIndicator" class="text-danger required-indicator">*</span>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="YesNoButtonInstance">
+    <h5 class="font-weight-bold"
+      [ngClass]="{'text-danger': isYesNoInvalid === true }">
+      {{ text }}
+      <span *ngIf="childRequiredIndicator" class="text-danger required-indicator">*</span>
+    </h5>
+  </ng-container>
+
+  <ng-content></ng-content>
+
+  <ng-container *ngIf="isCheckbox">
+    <span [class.disabled]="isDisabled && isCheckbox" class="label-text-padding-top">{{ text }}</span>
+    <span *ngIf="childRequiredIndicator" class="text-danger required-indicator">*</span>
+  </ng-container>
+
+  <span *ngIf="invalid" class="field-help text-danger">{{ errorMessage }}</span>
+</label>
+<ng-content select="cl-yes-no-button"></ng-content>
